@@ -19,7 +19,7 @@ class RestaurantController extends Controller
 
     public function store(RestaurantRequest $request) {
     	$restaurantData = $request->all();
-        $validator = $request->validated();
+        $request->validated();
     	$restaurant = new Restaurant();
     	$restaurant->create($restaurantData);
     	print 'Restaurante criado com sucesso';
@@ -29,8 +29,9 @@ class RestaurantController extends Controller
     	return view('admin.restaurants.edit', compact('restaurant'));
     }
 
-    public function update(Request $request, $id) {
+    public function update(RestaurantRequest $request, $id) {
     	$restaurantData = $request->all();
+        $request->validated();
     	$restaurant = Restaurant::findOrFail($id);
     	$restaurant->update($restaurantData);
     	print 'Restaurante atualizado com sucesso';
