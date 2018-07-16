@@ -23,3 +23,6 @@ Route::prefix('admin')->group(function() {
 	Route::post('restaurants/update/{id}', 'Admin\RestaurantController@update')->name('restaurant.update');
 	Route::get('restaurants/remove/{id}', 'Admin\RestaurantController@delete')->name('restaurant.remove');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
