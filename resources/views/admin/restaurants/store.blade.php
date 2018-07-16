@@ -1,6 +1,7 @@
 <h1>Inserção de Restaurante</h1>
 <hr>
-<form action="">
+<form action="{{ route('restaurant.store') }}" method="post">
+	{{ csrf_field() }}
 	<p>
 		<label for="name">Nome do Restaurante</label><br>
 		<input type="text" name="name" id="name">
