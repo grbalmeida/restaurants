@@ -1,5 +1,6 @@
 <h1>Inserção de Restaurante</h1>
 <hr>
+{{ var_dump($errors->all()) }}
 <form action="{{ route('restaurant.store') }}" method="post">
 	{{ csrf_field() }}
 	<p>
