@@ -19,7 +19,7 @@
 					<tr>
 						<td>{{ $user->id }}</td>
 						<td>{{ $user->name }}</td>
-						<td>{{ $user->created_at }}</td>
+						<td>{{ date('d/m/Y H:i:s', strtotime($user->created_at)) }}</td>
 						<td>
 							<a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn btn-primary">Editar</a>
 							<a href="{{ route('user.remove', ['id' => $user->id]) }}" class="btn btn-danger">Excluir</a>

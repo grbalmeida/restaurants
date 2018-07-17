@@ -19,7 +19,7 @@
 					<tr>
 						<td>{{ $restaurant->id }}</td>
 						<td>{{ $restaurant->name }}</td>
-						<td>{{ $restaurant->created_at }}</td>
+						<td>{{ date('d/m/Y H:i:s', strtotime($restaurant->created_at)) }}</td>
 						<td>
 							<a href="{{ route('restaurant.edit', ['restaurant' => $restaurant->id]) }}" class="btn btn-primary">Editar</a>
 							<a href="{{ route('restaurant.remove', ['id' => $restaurant->id]) }}" class="btn btn-danger">Excluir</a>
