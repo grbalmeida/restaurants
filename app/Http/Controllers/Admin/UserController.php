@@ -23,7 +23,8 @@ class UserController extends Controller
         $userData['password'] = bcrypt($userData['password']);
     	$user = new User();
     	$user->create($userData);
-    	print 'Usuário criado com sucesso';
+    	flash('Usuário criado com sucesso')->success();
+        return redirect()->route('user.index');
     }
 
     public function edit(User $user) {
@@ -41,6 +42,7 @@ class UserController extends Controller
     public function delete($id) {
     	$user = User::findOrFail($id);
     	$user->delete();
-    	print 'Usuário removido com sucesso';
+        flash('Usuário removido com sucesso')->success();
+    	return redirect()->route('user.index');
     }
 }
