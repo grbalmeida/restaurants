@@ -26,7 +26,20 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmeds'
+            'password' => 'required|string|min:6|confirmed'
+        ];
+    }
+
+    public function messages() {
+        return [
+            'name.required' => 'Campo nome é obrigatório',
+            'email.required' => 'Campo email é obrigatório',
+            'password.required' => 'Campo senha é obrigatório',
+            'name.max' => 'Nome deve conter no máximo 255 caracteres',
+            'email.max' => 'E-mail deve conter no máximo 255 caracteres',
+            'email.unique' => 'Esse e-mail já foi cadastrado',
+            'password.min' => 'Senha deve conter pelo menos 6 caracteres',
+            'password.confirmed' => 'As senhas não são iguais'
         ];
     }
 }

@@ -20,13 +20,14 @@ class UserController extends Controller
     public function store(UserRequest $request) {
     	$userData = $request->all();
         $request->validated();
+        $userData['password'] = bcrypt($userData['password']);
     	$user = new User();
     	$user->create($userData);
     	print 'Usuário criado com sucesso';
     }
 
     public function edit(User $user) {
-    	return view('admin.user.edit', compact('user'));
+    	return view('admin.users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, $id) {
