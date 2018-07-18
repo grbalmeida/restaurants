@@ -10,6 +10,11 @@ class Menu extends Model
 	protected $table = 'menu';
 
     protected $fillable = [
-    	'name', 'price'
+    	'name', 'price', 'restaurant_id'
     ];
+
+    public function restaurant() {
+    	return $this->belongsTo(Restaurant::class);
+    }
+
 }
