@@ -15,14 +15,23 @@
 				@endif
 			</p>
 			<p class="form-group">
-				<label for="price">Preço</label><br>
-				<input type="number" name="price" id="name" value="{{ number_format($menu->price, 2) }}" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" min="0" step="0.01">
+				<label for="price">Nome</label><br>
+				<input type="number" name="price" id="price" value="{{ number_format($menu->price, 2) }}" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" min="0" max="1000000" step="0.01">
 				@if($errors->has('price'))
 					<span class="invalid-feedback">
 						<strong>{{ $errors->first('price') }}</strong>
 					</span>
 				@endif
 			</p>
+			<p class="form-group">
+				<label for="restaurant_id">Restaurante</label><br>
+				<select class="form-control" name="restaurant_id">
+					@foreach($restaurants as $restaurant)
+						<option value="{{ $restaurant->id }}" @if($menu->restaurant_id == $restaurant->id) selected @endif>{{ $restaurant->name }}</option>
+					@endforeach
+				</select>
+			</p>
+
 			<input type="submit" value="Atualizar" class="btn btn-success btn-lg">
 		</form>
 	</div>

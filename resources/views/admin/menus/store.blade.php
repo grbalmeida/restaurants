@@ -7,7 +7,7 @@
 		<form action="{{ route('menu.store') }}" method="post">
 			{{ csrf_field() }}
 			<p class="form-group">
-				<label for="name">Nome</label><br>
+				<label for="name">Item</label><br>
 				<input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"> 
 				@if($errors->has('name'))
 					<span class="invalid-feedback">
@@ -23,6 +23,14 @@
 						<strong>{{ $errors->first('price') }}</strong>
 					</span>
 				@endif
+			</p>
+			<p class="form-group">
+				<label for="price">Restaurante</label><br>
+				<select class="form-control" name="restaurant_id">
+					@foreach($restaurants as $restaurant)
+						<option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
+					@endforeach
+				</select>
 			</p>
 			<input type="submit" value="Cadastrar" class="btn btn-success btn-lg">
 		</form>

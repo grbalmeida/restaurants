@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\MenuRequest;
 use App\Http\Controllers\Controller;
 use App\Menu;
+use App\Restaurant;
 
 class MenuController extends Controller
 {
@@ -14,27 +15,30 @@ class MenuController extends Controller
     }
 
     public function new() {
-    	return view('admin.menus.store');
+        $restaurants = Restaurant::all(['id', 'name']);
+    	return view('admin.menus.store', compact('restaurants'));
     }
 
     public function store(MenuRequest $request) {
     	$menuData = $request->all();
         $request->validated();
-    	$menu = new Menu();
-    	$menu->create($menuData);
+    	$restaurant = Restaurant::find($menuData['restaurant_id']);
+        $restaurant->menus()->create($menuData);
     	flash('Cardápio criado com sucesso')->success();
         return redirect()->route('menu.index');
     }
 
     public function edit(Menu $menu) {
-    	return view('admin.menus.edit', compact('menu'));
+        $restaurants = Restaurant::all(['id', 'name']);
+    	return view('admin.menus.edit', compact('menu', 'restaurants'));
     }
 
     public function update(MenuRequest $request, $id) {
     	$menuData = $request->all();
         $request->validated();
-    	$menu = Menu::findOrFail($id);
-    	$menu->update($menuData);
+    	$menu = Menu::find($id);
+        $menu->restaurant()->associate($menuData['restaurant_id']);
+        $menu->update($menuData);
     	flash('Cardápio atualizado com sucesso')->success();
         return redirect()->route('menu.edit', ['id' => $id]);
     }

@@ -34,7 +34,7 @@ class MenuRequest extends FormRequest
             'name.required' => 'Campo nome é obrigatório',
             'name.min' => 'O nome deve conter pelo menos 5 caracteres',
             'name.max' => 'O nome deve conter no máximo 255 caracteres',
-            'price.required' => 'Campo preço é obrigatório'
+            'price.required' => 'Campo preço é obrigatório',
         ];
     }
 }
