@@ -26,7 +26,9 @@ class AlterTableMenuAddForeignRestaurant extends Migration
      */
     public function down()
     {
-        $table->dropForeign('menu_restaurant_id_foreign');
-        $table->dropColumn('restaurant_id');
+        Schema::table('menu', function(Blueprint $table) {
+            $table->dropForeign('menu_restaurant_id_foreign');
+            $table->dropColumn('restaurant_id');
+        });
     }
 }
