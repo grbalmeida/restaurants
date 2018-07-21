@@ -29,6 +29,9 @@ class UserController extends Controller
     }
 
     public function edit(User $user) {
+        if($user->id != Auth::user()->id) {
+            return redirect()->route('user.index');
+        }
     	return view('admin.users.edit', compact('user'));
     }
 
