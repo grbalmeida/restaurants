@@ -22,6 +22,9 @@ class RestaurantPhotoController extends Controller
 			$restaurant->photos()->create([
 				'photo' => $newName
 			]);
+			flash()->success('Upload realizado com sucesso');
+			return redirect()->route('restaurant.photo', 
+				['id' => $id]);
 		}
 	}
 
