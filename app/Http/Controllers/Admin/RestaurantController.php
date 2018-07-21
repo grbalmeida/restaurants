@@ -28,6 +28,9 @@ class RestaurantController extends Controller
     }
 
     public function edit(Restaurant $restaurant) {
+        if($restaurant->owner_id != Auth::user()->id) {
+            return redirect()->route('restaurant.index');
+        }
     	return view('admin.restaurants.edit', compact('restaurant'));
     }
 
