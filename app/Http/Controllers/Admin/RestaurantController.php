@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\RestaurantRequest;
 use App\Http\Controllers\Controller;
 use App\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
     public function index() {
-    	$restaurants = Restaurant::all();
+    	$restaurants = Auth::user()->restaurants;
     	return view('admin.restaurants.index', compact('restaurants'));
     }
 
@@ -20,8 +21,8 @@ class RestaurantController extends Controller
     public function store(RestaurantRequest $request) {
     	$restaurantData = $request->all();
         $request->validated();
-    	$restaurant = new Restaurant();
-    	$restaurant->create($restaurantData);
+        $user = Auth::user();
+        $user->restaurants()->create($restaurantData);
     	flash('Restaurante criado com sucesso')->success();
         return redirect()->route('restaurant.index');
     }

@@ -21,12 +21,12 @@
 					<tr>
 						<td>{{ $menu->id }}</td>
 						<td>{{ $menu->name }}</td>
-						<td>R$ {{ str_replace('.', ',', number_format($menu->price, 2)) }}</td>
 						<td>
 							<a href="{{ route('restaurant.edit', ['restaurant' => $menu->restaurant->id]) }}">
 								{{ $menu->restaurant->name }}
 							</a>
 						</td>
+						<td>R$ {{ str_replace('.', ',', number_format($menu->price, 2)) }}</td>
 						<td>{{ date('d/m/Y H:i:s', strtotime($menu->created_at)) }}</td>
 						<td>
 							<a href="{{ route('menu.edit', ['menu' => $menu->id]) }}" class="btn btn-primary">Editar</a>
