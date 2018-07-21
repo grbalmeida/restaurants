@@ -31,6 +31,11 @@ class MenuController extends Controller
     }
 
     public function edit(Menu $menu) {
+        $restaurantId = Menu::where('id', $menu->id)->get()[0]->restaurant_id;
+        $ownerId = Restaurant::where('id', $restaurantId)->get()[0]->owner_id;
+        if($ownerId != Auth::user()->id) {
+            return redirect()->route('menu.index');
+        }
         $restaurants = Auth::user()->restaurants;
     	return view('admin.menus.edit', compact('menu', 'restaurants'));
     }
