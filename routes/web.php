@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/restaurant/{id}', 'HomeController@get')->name('home.single');
 
 Route::group(['middleware' => ['auth']], function() {
 
